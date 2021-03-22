@@ -37,7 +37,7 @@ int main(){
 		if(1 << __BUTTON_B_PIN__ & GPIO->IN){
 			for (int i = 4; i < 15; i++)
 			{
-				GPIO->DIRSET = (1 << i);
+				GPIO->OUTSET = (1 << i);
 			}
 			
 		}
