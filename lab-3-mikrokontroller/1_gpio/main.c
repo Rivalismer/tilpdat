@@ -34,9 +34,11 @@ int main(){
 
 		/* Check if button B is pressed;
 		 * turn on LED matrix if it is. */
+		if(1 << __BUTTON_B_PIN__ & GPIO->IN){}
 
 		/* Check if button A is pressed;
 		 * turn off LED matrix if it is. */
+		if(1 << __BUTTON_A_PIN__ & GPIO->IN){}
 
 		sleep = 10000;
 		while(--sleep);
