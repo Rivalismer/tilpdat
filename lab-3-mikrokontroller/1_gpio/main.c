@@ -34,11 +34,23 @@ int main(){
 
 		/* Check if button B is pressed;
 		 * turn on LED matrix if it is. */
-		if(1 << __BUTTON_B_PIN__ & GPIO->IN){}
+		if(1 << __BUTTON_B_PIN__ & GPIO->IN){
+			for (int i = 4; i < 15; i++)
+			{
+				GPIO->DIRSET = (1 << i);
+			}
+			
+		}
 
 		/* Check if button A is pressed;
 		 * turn off LED matrix if it is. */
-		if(1 << __BUTTON_A_PIN__ & GPIO->IN){}
+		if(1 << __BUTTON_A_PIN__ & GPIO->IN){
+			for (int i = 4; i < 15; i++)
+			{
+				GPIO->OUTCLR = (1 << i);
+			}
+			
+		}
 
 		sleep = 10000;
 		while(--sleep);
