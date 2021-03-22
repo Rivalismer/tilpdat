@@ -1,7 +1,7 @@
 #include <stdint.h>
 
 #define GPIO ((NRF_GPIO_REGS*)0x50000000)
-#define __RESERVED1_SIZE__ 	121
+#define __RESERVED1_SIZE__ 	120
 #define __BUTTON_A_PIN__	17
 #define __BUTTON_B_PIN__	26
 
@@ -34,22 +34,29 @@ int main(){
 
 		/* Check if button B is pressed;
 		 * turn on LED matrix if it is. */
-		if(1 << __BUTTON_B_PIN__ & GPIO->IN){
-			for (int i = 4; i < 15; i++)
+		if(1 << __BUTTON_B_PIN__ & ~GPIO->IN){
+			for (int i = 13; i <= 15; i++)
 			{
 				GPIO->OUTSET = (1 << i);
 			}
-			
+
+			for (int i = 4; i <= 12; i++)
+			{
+				GPIO->OUTCLR = (1 << i);
+			}
 		}
 
 		/* Check if button A is pressed;
 		 * turn off LED matrix if it is. */
-		if(1 << __BUTTON_A_PIN__ & GPIO->IN){
-			for (int i = 4; i < 15; i++)
+		if(1 << __BUTTON_A_PIN__ & ~GPIO->IN){
+			for (int i = 13; i <= 15; i++)
 			{
 				GPIO->OUTCLR = (1 << i);
 			}
-			
+			for (int i = 4; i <= 12; i++)
+			{
+				GPIO->OUTSET = (1 << i);
+			}
 		}
 
 		sleep = 10000;
