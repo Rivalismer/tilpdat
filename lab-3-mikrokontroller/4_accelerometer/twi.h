@@ -9,6 +9,7 @@
 #define SCL 0
 
 typedef struct {
+    // Tasks
     volatile uint32_t STARTRX;
     volatile uint32_t RESERVED0;
     volatile uint32_t STARTTX;
@@ -17,6 +18,7 @@ typedef struct {
     volatile uint32_t RESERVED2;
     volatile uint32_t SUSPEND;
     volatile uint32_t RESUME;
+    // Events
     volatile uint32_t RESERVED3[56];
     volatile uint32_t STOPPED;
     volatile uint32_t RXDRDY;
@@ -26,12 +28,13 @@ typedef struct {
     volatile uint32_t ERROR;
     volatile uint32_t RESERVED6[4];
     volatile uint32_t BB;
+    // Registers
     volatile uint32_t RESERVED7[49];
     volatile uint32_t SHORTS;
     volatile uint32_t RESERVED8[63];
     volatile uint32_t INTEN;
-    volatile uint32_t INTSET;
-    volatile uint32_t INTCLR;
+    volatile uint32_t INTENSET;
+    volatile uint32_t INTENCLR;
     volatile uint32_t RESERVED9[110];
     volatile uint32_t ERRORSRC;
     volatile uint32_t RESERVED10[14];
@@ -50,5 +53,6 @@ typedef struct {
 
 void twi_init();
 void twi_multi_read(uint8_t slave_address, uint8_t start_register, int registers_to_read, uint8_t* data_buffer);
+void twi_multi_write(uint8_t slave_address, uint8_t start_register, int registers_to_write, uint8_t* data_buffer);
 
 #endif

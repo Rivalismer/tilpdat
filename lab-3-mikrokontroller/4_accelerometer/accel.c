@@ -1,11 +1,12 @@
 #include <stdint.h>
 #include "accel.h"
 #include "twi.h"
+#include "utility.h"
 
-#define ACCEL_ADDR			0x5A
-#define ACCEL_DATA_REG		____
-#define ACCEL_CTRL_REG_1	____
-#define ACCEL_200_HZ_ON		0x11
+#define ACCEL_ADDR			0x19
+#define ACCEL_DATA_REG		0x29
+#define ACCEL_CTRL_REG_1	0x20
+#define ACCEL_200_HZ_ON		0x67
 
 void accel_init(){
 	uint8_t data = ACCEL_200_HZ_ON;
